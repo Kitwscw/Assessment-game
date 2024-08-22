@@ -169,7 +169,7 @@ script = ExtResource("1_mugpx")
 texture_filter = 1
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_hbfh2")
-animation = &"idle"
+animation = &"run"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
