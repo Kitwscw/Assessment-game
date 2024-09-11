@@ -492,8 +492,17 @@ shape = SubResource("WorldBoundaryShape2D_n258m")
 [node name="Label" type="Label" parent="."]
 offset_left = 58.0
 offset_top = -62.0
-offset_right = 308.0
+offset_right = 188.0
 offset_bottom = -25.0
 theme_override_fonts/font = ExtResource("4_juog8")
 theme_override_font_sizes/font_size = 8
 text = "Press space to jump!"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 194.0
+offset_top = -38.0
+offset_right = 317.0
+offset_bottom = -29.0
+theme_override_fonts/font = ExtResource("4_juog8")
+theme_override_font_sizes/font_size = 8
+text = "Press ctrl to climb!"
