@@ -14,6 +14,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var is_dashing = false
 var dash_time = 0.0
+var dash_direction = Vector2.ZERO
+var isdash = Input.is_action_just_pressed("dash")
 
 func _ready():
 	dashtimer.wait_time = DASH_COOLDOWN
@@ -27,11 +29,26 @@ func _physics_process(delta):
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+	
+	var direction = Input.get_axis("move left", "move right")
+	
+	# Dash logic
+	if isdash and not dashtimer.is_stopped():
+		is_dashing = true
+		dash_direction = Vector2(direction, 0).normalized()
+		velocity.x = dash_direction.x * DASHSPEED
+		dash_time = DASH_DURATION
+		dashtimer.start()
+	
+	if is_dashing:
+		dash_time -= delta
+		if dash_time <= 0:
+			is_dashing = false
+			velocity.x = direction * SPEED
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("move left", "move right")
-	var isdash = Input.is_action_just_pressed("dash")
+	
 			
 	if direction<0:
 		sprite.flip_h = true
