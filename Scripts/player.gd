@@ -8,7 +8,7 @@ const DASH_DURATION=0.2
 const DASH_COOLDOWN= 1.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var gravity = 980
 @onready var sprite = $AnimatedSprite2D
 @onready var dashtimer = $Timer
 
@@ -16,24 +16,27 @@ var is_dashing = false
 var dash_time = 0.0
 var dash_direction = Vector2.ZERO
 var isdash = Input.is_action_just_pressed("dash")
+var jump_num=2
 
 func _ready():
 	dashtimer.wait_time = DASH_COOLDOWN
 	dashtimer.one_shot = true
 
 func _physics_process(delta):
+	if is_on_floor():
+		jump_num=2
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		sprite.play("fall")
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump")  and jump_num>0:
 		velocity.y = JUMP_VELOCITY
-	
+		jump_num = jump_num-1
 	var direction = Input.get_axis("move left", "move right")
 	
 	# Dash logic
-	if isdash and not dashtimer.is_stopped():
+	if isdash and not  dashtimer.is_stopped():
 		is_dashing = true
 		dash_direction = Vector2(direction, 0).normalized()
 		velocity.x = dash_direction.x * DASHSPEED
