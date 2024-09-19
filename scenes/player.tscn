@@ -175,9 +175,8 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xfnik"]
-radius = 4.0
-height = 14.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d7u6a"]
+size = Vector2(11, 15)
 
 [node name="characterbody2d" type="CharacterBody2D"]
 script = ExtResource("1_ujx6n")
@@ -186,12 +185,12 @@ script = ExtResource("1_ujx6n")
 texture_filter = 1
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_moi11")
-animation = &"fall"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.326402
+frame_progress = 0.576706
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -7)
-shape = SubResource("CapsuleShape2D_xfnik")
+position = Vector2(0.5, -7.5)
+shape = SubResource("RectangleShape2D_d7u6a")
 
 [node name="Timer" type="Timer" parent="."]
