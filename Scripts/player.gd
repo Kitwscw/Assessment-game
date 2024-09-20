@@ -12,6 +12,7 @@ var gravity = 980
 @onready var sprite = $AnimatedSprite2D
 @onready var dashtimer = $Timer
 
+var dash_allow = false
 var dash_active = false
 var dash_time = 0.0
 var dash_direction = Vector2.ZERO
@@ -36,7 +37,10 @@ func _physics_process(delta):
 	var direction = Input.get_axis("move left", "move right")
 	
 	# Dash logic
-	if isdash and not dash_active and not dashtimer.is_stopped():
+	print ("Can dash:", dash_allow)
+	if isdash:
+		var dash_allow=true
+	if dash_allow == true and not dash_active and dashtimer.is_stopped():
 		dash_active = true
 		dash_direction = Vector2(direction, 0).normalized()
 		velocity.x = dash_direction.x * DASHSPEED
