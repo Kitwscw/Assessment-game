@@ -507,7 +507,7 @@ offset_right = 434.0
 offset_bottom = -29.0
 theme_override_fonts/font = ExtResource("4_juog8")
 theme_override_font_sizes/font_size = 8
-text = "Press space in mid-air to double jump!"
+text = "Press space in mid-air to double jump!!"
 
 [node name="Label3" type="Label" parent="."]
 offset_left = 534.0
@@ -516,7 +516,7 @@ offset_right = 663.0
 offset_bottom = -119.0
 theme_override_fonts/font = ExtResource("4_juog8")
 theme_override_font_sizes/font_size = 8
-text = "press shift to dash!!"
+text = "press Z to dash!!!"
 
 [node name="Label4" type="Label" parent="."]
 offset_left = 1082.0
@@ -525,4 +525,4 @@ offset_right = 1184.0
 offset_bottom = -100.0
 theme_override_fonts/font = ExtResource("4_juog8")
 theme_override_font_sizes/font_size = 8
-text = "end of tutorial"
+text = "END OF TUTORIAL!!!!"

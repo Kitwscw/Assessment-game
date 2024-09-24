@@ -15,8 +15,6 @@ var gravity = 980
 var dash_allow = false
 var dash_active = false
 var dash_time = 0.0
-var dash_direction = Vector2.ZERO
-var isdash = Input.is_action_just_pressed("dash")
 var jump_num=2
 
 func _ready():
@@ -35,14 +33,16 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 		jump_num = jump_num-1
 	var direction = Input.get_axis("move left", "move right")
+	var dash_direction = Input.get_axis("move left", "move right")
 	
 	# Dash logic
-	print ("Can dash:", dash_allow)
-	if isdash:
-		var dash_allow=true
+	
+	if Input.is_action_just_pressed("dash"):
+		dash_allow=true
+	print ("Can dash:", dash_active)
 	if dash_allow == true and not dash_active and dashtimer.is_stopped():
 		dash_active = true
-		dash_direction = Vector2(direction, 0).normalized()
+		dash_direction = Vector2(direction, 1).normalized()
 		velocity.x = dash_direction.x * DASHSPEED
 		dash_time = DASH_DURATION
 		dashtimer.start()
@@ -52,7 +52,7 @@ func _physics_process(delta):
 		if dash_time <= 0:
 			dash_active = false
 			velocity.x = direction * SPEED
-
+			dash_allow=false
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	
